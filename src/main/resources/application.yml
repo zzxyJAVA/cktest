@@ -5,7 +5,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/api-runner
+#    url: jdbc:mysql://localhost:3306/api-runner
+    url: jdbc:mysql://119.23.238.138:3316/api-runner
     username: root
-    password: root
+    password: java
+#     password: root
 
