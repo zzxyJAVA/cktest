@@ -3,6 +3,9 @@
   <groupId>com.lemon</groupId>
   <artifactId>cktest</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <properties>
+  <java.version>1.8</java.version>
+  </properties>
   
   <parent>
 		<groupId>org.springframework.boot</groupId>
