@@ -13,7 +13,7 @@ pipeline {
                     scannerHome = tool 'sonar-scanner2'
                 }
                withSonarQubeEnv('sonarqube'){
-                   bat label: '', script: '${scannerHome}\bin\sonar-scanner.bat -Dsonar.projectKey=pipeline -Dsonar.sources=. -Dsonar.java.binaries=.'
+                   bat label: '', script: '${scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey=pipeline -Dsonar.sources=. -Dsonar.java.binaries=.'
                }
             }
         }
