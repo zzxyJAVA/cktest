@@ -9,23 +9,23 @@ pipeline {
         }
         stage('代码质检') {
             steps {
-               withSonarQubeEnv('sonarqube'){
+               withSonarQubeEnv('sonar-scanner2'){
                bat label: '', script: 'sonar-scanner.bat -Dsonar.projectKey=pipeline -Dsonar.sources=src/main/java -Dsonar.java.binaries=.'
                }
             }
         }
         stage('mvn test'){
             steps {
-        withMaven(maven: 'maven3.5.2') {
+      
                 bat label: '', script: 'mvn test'
-        }
+       
             }
     }
     stage('mvn build'){
         steps {
-        withMaven(maven: 'maven3.5.2') {
+       // withMaven(maven: 'maven3.5.2') {
                 bat label: '', script: 'mvn clean install -Dmaven.test.skip=true'
-        }
+       // }
         }
     }
 
