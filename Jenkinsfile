@@ -13,23 +13,20 @@ pipeline {
                     scannerHome = tool 'sonar-scanner2'
                 }
                withSonarQubeEnv('sonarqube'){
-               bat label: '', script: 'sonar-scanner.bat -Dsonar.projectKey=pipeline -Dsonar.sources=. -Dsonar.java.binaries=.'
+                   bat label: '', script: '${scannerHome}\bin\sonar-scanner.bat -Dsonar.projectKey=pipeline -Dsonar.sources=. -Dsonar.java.binaries=.'
                }
             }
         }
         stage('mvn test'){
             steps {
-      
-                bat label: '', script: 'mvn test'
+               //bat label: '', script: 'mvn test'
        
             }
     }
     stage('mvn build'){
         steps {
-       // withMaven(maven: 'maven3.5.2') {
-                bat label: '', script: 'mvn clean install -Dmaven.test.skip=true'
-       // }
-        }
+                  bat label: '', script: 'mvn clean install -Dmaven.test.skip=true'
+             }
     }
 
         stage('代码部署') {
