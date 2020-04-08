@@ -10,7 +10,7 @@ pipeline {
         stage('代码质检') {
             steps {
                 //with(sonar-scanner2){
-               bat label: '', script: ' sonar-scanner.bat -Dsonar.projectKey=${JOB_NAME} -Dsonar.sources=. '
+               bat label: '', script: 'sonar-scanner.bat -Dsonar.projectKey=${JOB_NAME} -Dsonar.sources=src/main/java -Dsonar.java.binaries=target'
                //}
             }
         }
