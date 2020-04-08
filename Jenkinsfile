@@ -15,13 +15,17 @@ pipeline {
             }
         }
         stage('mvn test'){
+            steps {
         withMaven(maven: 'maven3.5.2') {
                 bat label: '', script: 'mvn test'
         }
+            }
     }
     stage('mvn build'){
+        steps {
         withMaven(maven: 'maven3.5.2') {
                 bat label: '', script: 'mvn clean install -Dmaven.test.skip=true'
+        }
         }
     }
 
