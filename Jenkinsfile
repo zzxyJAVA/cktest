@@ -19,7 +19,7 @@ pipeline {
         }
         stage('mvn test'){
             steps {
-               //bat label: '', script: 'mvn test'
+               bat label: '', script: 'mvn test'
        
             }
     }
