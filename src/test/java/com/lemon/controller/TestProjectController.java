@@ -39,7 +39,7 @@ public class TestProjectController {
 							
 				)
 		.andDo(print())
-		.andExpect(MockMvcResultMatchers.jsonPath("$.length()").value("3"))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.length()").value("2"))
 		.andReturn();		
 	}
 	
