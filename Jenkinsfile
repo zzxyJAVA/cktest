@@ -3,19 +3,28 @@ pipeline {
     stages { 
         stage('获取代码') {
             steps {
-                echo 'github is ok'
+                //echo 'github is ok'
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/zzxyJAVA/cktest.git']]])
             }
         }
         stage('代码质检') {
             steps {
-                echo 'sonar is ok'
+                //with(sonar-scanner2){
+               bat label: '', script: ' sonar-scanner.bat -Dsonar.projectKey=${JOB_NAME} -Dsonar.sources=. '
+               //}
             }
         }
-        stage('代码构建') {
-            steps {
-                echo 'build is ok'
-            }
+        stage('mvn test'){
+        withMaven(maven: 'maven3.5.2') {
+                bat label: '', script: 'mvn test'
         }
+    }
+    stage('mvn build'){
+        withMaven(maven: 'maven3.5.2') {
+                bat label: '', script: 'mvn clean install -Dmaven.test.skip=true'
+        }
+    }
+
         stage('代码部署') {
             steps {
                 echo 'deploy is ok'
