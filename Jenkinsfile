@@ -9,11 +9,9 @@ pipeline {
         }
         stage('代码质检') {
             steps {
-                script {
-                    scannerHome = tool 'sonar-scanner2'
-                }
+               
                withSonarQubeEnv('sonarqube'){
-                   bat label: '', script: '${scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey=pipeline -Dsonar.sources=. -Dsonar.java.binaries=.'
+                   bat label: '', script: 'sonar-scanner.bat -Dsonar.projectKey=pipeline -Dsonar.sources=. -Dsonar.java.binaries=.'
                }
             }
         }
