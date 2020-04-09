@@ -29,7 +29,7 @@ pipeline {
 
         stage('代码部署') {
             steps {
-                echo 'deploy is ok'
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'lemon_java', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'java -jar cktest-0.0.1-SNAPSHOT.jar > log.file  2>&1 &', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: 'target', sourceFiles: 'target/cktest-0.0.1-SNAPSHOT.jar')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
             }
         }
     }
